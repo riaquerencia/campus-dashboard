@@ -2,92 +2,84 @@
 
 A smart campus dashboard with an embedded AI Assistant that queries independent MCP (Model Context Protocol) servers for real-time data from library, cafeteria, events, and academics.
 
+## 🌐 Live Demo
+**Frontend:** https://campus-dashboard-mauve.vercel.app
+
 ## 🏗️ Architecture
 
 ```
 campus-dashboard/
-├── frontend/          # React / Next.js UI
+├── frontend/          # React 
 └── backend/
-    ├── api/           # Express gateway (port 4000)
+    ├── api/           # Express gateway (Groq AI)
     └── mcp-servers/
-        ├── library/   # Port 5001
-        ├── cafeteria/ # Port 5002
-        ├── events/    # Port 5003
-        └── academics/ # Port 5004
+        ├── library/   # Book search & availability
+        ├── cafeteria/ # Today's menu & timings
+        ├── events/    # Campus events & workshops
+        └── academics/ # Timetable & deadlines
 ```
 
 ## ✨ Features
+- 🤖 AI Assistant powered by Groq (LLaMA 3.1)
+- 📚 Library book search & availability
+- 🍽️ Live cafeteria menu
+- 🎉 Upcoming campus events
+- 📖 Class timetable & deadlines
+- 🔄 Independent MCP Servers for each data source
 
-- **AI Assistant** — Ask natural-language questions; it routes to the right MCP server
-- **Library MCP** — Book availability, search catalog
-- **Cafeteria MCP** — Today's menu, timings
-- **Events MCP** — Club events, workshops, fests
-- **Academics MCP** — Timetables, handbooks, deadlines
-- **Unified Dashboard** — All data in one view
+## 🛠️ Tech Stack
+| Layer | Technology |
+|---|---|
+| Frontend | React + Vite, Tailwind CSS |
+| Backend | Node.js + Express |
+| AI | Groq API (LLaMA 3.1) |
+| MCP Servers | Node.js + Express |
+| Hosting | Vercel (frontend), Render (backend) |
 
-## 🚀 Quick Start
+## 🚀 Setup Instructions
 
-### 1. Clone & Install
-
+### 1. Clone the repo
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/riaquerencia/campus-dashboard.git
 cd campus-dashboard
-
-# Install all dependencies
-npm run install:all
 ```
 
-### 2. Set Environment Variables
-
+### 2. Install dependencies
 ```bash
-# backend/api/.env
-ANTHROPIC_API_KEY=your_key_here
-PORT=4000
-
-# frontend/.env.local
-NEXT_PUBLIC_API_URL=http://localhost:4000
+cd backend/api && npm install && cd ../..
+cd backend/mcp-servers/library && npm install && cd ../../..
+cd backend/mcp-servers/cafeteria && npm install && cd ../../..
+cd backend/mcp-servers/events && npm install && cd ../../..
+cd backend/mcp-servers/academics && npm install && cd ../../..
+cd frontend && npm install && cd ..
 ```
 
-### 3. Run Everything
+### 3. Add environment variable
+Create `backend/api/.env`:
 
+### 4. Run locally
+Open 6 terminals and run:
 ```bash
-# From root — starts all servers concurrently
-npm run dev
+node backend/mcp-servers/library/index.js
+node backend/mcp-servers/cafeteria/index.js
+node backend/mcp-servers/events/index.js
+node backend/mcp-servers/academics/index.js
+node backend/api/index.js
+cd frontend && npx vite --port 3000
 ```
 
-This starts:
-- Frontend on http://localhost:3000
-- API Gateway on http://localhost:4000
-- Library MCP on http://localhost:5001
-- Cafeteria MCP on http://localhost:5002
-- Events MCP on http://localhost:5003
-- Academics MCP on http://localhost:5004
-
+Open http://localhost:3000
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Frontend | Next.js 14, Tailwind CSS |
+| Frontend | React.js 14, Tailwind CSS |
 | Backend / MCP Servers | Node.js + Express |
-| AI Integration | Anthropic Claude API (tool calling) |
+| AI Integration | Groq API (tool calling) |
 | Hosting | Vercel (frontend), Render (backend) |
 
-## 📦 Deployment
 
-### Frontend → Vercel
-```bash
-cd frontend
-npx vercel --prod
-```
-
-### Backend → Render
-- Push repo to GitHub
-- Create a new Web Service on [render.com](https://render.com)
-- Set `npm run start:backend` as the start command
-- Add `ANTHROPIC_API_KEY` in environment variables
 
 ## 📹 Demo Video
 [Link to demo video]
 
-## 👥 Team
-[Your name / team]
