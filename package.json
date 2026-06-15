@@ -1,0 +1,17 @@
+{
+  "name": "campus-dashboard-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --names \"LIB,CAF,EVT,ACA,API,WEB\" --prefix-colors \"blue,green,yellow,magenta,cyan,white\" \"npm run start:library\" \"npm run start:cafeteria\" \"npm run start:events\" \"npm run start:academics\" \"npm run start:api\" \"npm run start:frontend\"",
+    "start:library":   "node backend/mcp-servers/library/index.js",
+    "start:cafeteria": "node backend/mcp-servers/cafeteria/index.js",
+    "start:events":    "node backend/mcp-servers/events/index.js",
+    "start:academics": "node backend/mcp-servers/academics/index.js",
+    "start:api":       "node backend/api/index.js",
+    "start:frontend":  "cd frontend && npx vite --port 3000"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
