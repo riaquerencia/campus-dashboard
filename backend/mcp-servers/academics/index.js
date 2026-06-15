@@ -1,4 +1,4 @@
-// MCP Server: Academics (Port 5004)
+
 const express = require("express");
 const cors = require("cors");
 const app = express();

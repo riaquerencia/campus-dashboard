@@ -1,5 +1,5 @@
 const path = require("path");
-
+require("dotenv").config({ path: require("path").resolve(__dirname, ".env") });
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -9,8 +9,8 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// PASTE YOUR GROQ KEY HERE:
-process.env.GROQ_API_KEY = "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";
+
+
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -90,4 +90,4 @@ app.get("/api/health", async (req, res) => {
   res.json({ api: "ok", mcpServers: statuses });
 });
 
-app.listen(process.env.PORT || 4000, () => console.log("🚀 Running on port 4000"));
+app.listen(process.env.PORT || 4000, () => console.log(" Running on port 4000"));

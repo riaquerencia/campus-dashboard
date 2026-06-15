@@ -43,7 +43,7 @@ export default function ServerStatus() {
       </div>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-300">🚀 API Gateway</span>
+          <span className="text-sm text-gray-300"> API Gateway</span>
           {badge(apiOk === null ? undefined : apiOk ? "online" : "offline")}
         </div>
         {Object.entries(SERVERS).map(([key, { label, icon }]) => (

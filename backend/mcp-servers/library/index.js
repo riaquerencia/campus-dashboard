@@ -1,11 +1,11 @@
-// MCP Server: Library (Port 5001)
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- Mock Data (replace with real DB/API calls) ---
+
 const books = [
   { id: 1, title: "Introduction to Algorithms", author: "CLRS", available: true, copies: 3 },
   { id: 2, title: "The Pragmatic Programmer", author: "Hunt & Thomas", available: false, copies: 0 },
@@ -14,7 +14,7 @@ const books = [
   { id: 5, title: "Operating System Concepts", author: "Silberschatz", available: false, copies: 0 },
 ];
 
-// MCP tool manifest — describes what this server can do
+
 app.get("/manifest", (req, res) => {
   res.json({
     name: "library",
@@ -39,7 +39,7 @@ app.get("/manifest", (req, res) => {
   });
 });
 
-// Tool: search_books
+
 app.post("/tools/search_books", (req, res) => {
   const { query } = req.body;
   if (!query) return res.status(400).json({ error: "query is required" });
@@ -50,7 +50,7 @@ app.post("/tools/search_books", (req, res) => {
   res.json({ results });
 });
 
-// Tool: check_availability
+
 app.post("/tools/check_availability", (req, res) => {
   const { title } = req.body;
   if (!title) return res.status(400).json({ error: "title is required" });
@@ -59,13 +59,13 @@ app.post("/tools/check_availability", (req, res) => {
   res.json({ found: true, book });
 });
 
-// Tool: list_available_books
+
 app.post("/tools/list_available_books", (req, res) => {
   const available = books.filter((b) => b.available);
   res.json({ results: available });
 });
 
-// Health check
+
 app.get("/health", (req, res) => res.json({ status: "ok", server: "library" }));
 
 const PORT = 5001;

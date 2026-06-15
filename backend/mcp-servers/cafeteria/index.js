@@ -1,4 +1,4 @@
-// MCP Server: Cafeteria (Port 5002)
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
