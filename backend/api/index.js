@@ -15,10 +15,10 @@ app.use(express.json());
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const MCP = {
-  library:   "http://localhost:5001",
-  cafeteria: "http://localhost:5002",
-  events:    "http://localhost:5003",
-  academics: "http://localhost:5004",
+  library:   "https://campus-library-bdfh.onrender.com",
+  cafeteria: "https://campus-cafeteria.onrender.com",
+  events:    "https://campus-events-y203.onrender.com",
+  academics: "https://campus-academics.onrender.com",
 };
 
 async function callMCP(server, tool, body = {}) {
