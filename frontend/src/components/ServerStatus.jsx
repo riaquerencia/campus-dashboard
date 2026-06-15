@@ -13,7 +13,7 @@ export default function ServerStatus() {
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/health", { signal: AbortSignal.timeout(3000) });
+      const res = await fetch("https://campus-dashboard-c9hl.onrender.com/api/health", { signal: AbortSignal.timeout(3000) });
       const data = await res.json();
       setStatuses(data.mcpServers || {});
       setApiOk(true);
